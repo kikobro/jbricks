@@ -4,10 +4,12 @@
 // ======================================================
 
 //======================================================
-// URL DA API
+// CONFIGURAÇÃO
 //======================================================
 
-const API_URL = "https://script.google.com/macros/s/AKfycby67C-NagjvUjTi1t1cLGXYiGTK9GlH_cYPZgj6o41Xi20-xKFYaai0DN_rfC0KG84/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby44NWRJPl3Q_2ua0PdCmGcgrYu_Q65cLUN5t8xWBlhhoZm34MhoRgZ4H6x29Japfg/exec";
+
+const WHATSAPP_GROUP = "https://chat.whatsapp.com/HOqwY4Jqjej0a8V2qS360o";
 
 //======================================================
 // ELEMENTOS
@@ -83,7 +85,6 @@ nome.addEventListener("input",validarFormulario);
 nascimento.addEventListener("change",validarFormulario);
 
 aceite.addEventListener("change",validarFormulario);
-
 //======================================================
 // VALIDA CPF
 //======================================================
@@ -92,7 +93,8 @@ function cpfValido(cpfTexto){
 
     let cpf = cpfTexto.replace(/\D/g,"");
 
-    if(cpf.length != 11) return false;
+    if(cpf.length != 11)
+        return false;
 
     if(/^(\d)\1+$/.test(cpf))
         return false;
@@ -136,7 +138,7 @@ function cpfValido(cpfTexto){
 
 function maiorDeIdade(){
 
-    if(nascimento.value=="")
+    if(nascimento.value == "")
         return false;
 
     let hoje = new Date();
@@ -147,10 +149,7 @@ function maiorDeIdade(){
 
     let mes = hoje.getMonth() - nasc.getMonth();
 
-    if(
-        mes < 0 ||
-        (mes===0 && hoje.getDate()<nasc.getDate())
-    ){
+    if(mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
 
         idade--;
 
@@ -166,28 +165,28 @@ function maiorDeIdade(){
 
 function validarFormulario(){
 
-    let idadeOk = maiorDeIdade();
+    const idadeOk = maiorDeIdade();
 
-    if(!idadeOk && nascimento.value!=""){
+    if(!idadeOk && nascimento.value != ""){
 
-        idadeErro.style.display="flex";
+        idadeErro.style.display = "flex";
 
     }else{
 
-        idadeErro.style.display="none";
+        idadeErro.style.display = "none";
 
     }
 
-    let telefoneOk =
+    const telefoneOk =
         telefone.value.replace(/\D/g,"").length >= 10;
 
-    let nomeOk =
+    const nomeOk =
         nome.value.trim().length > 5;
 
-    let cpfOk =
+    const cpfOk =
         cpfValido(cpf.value);
 
-    let aceiteOk =
+    const aceiteOk =
         aceite.checked;
 
     botao.disabled = !(
@@ -201,17 +200,18 @@ function validarFormulario(){
     );
 
 }
-
 //======================================================
-// ENVIO
+// ENVIO DO FORMULÁRIO
 //======================================================
 
-form.addEventListener("submit",async function(e){
+form.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    botao.disabled = true;
+    // Abre uma aba em branco enquanto ainda é um clique do usuário
+    const whatsappTab = window.open("", "_blank");
 
+    botao.disabled = true;
     botao.innerHTML = "Enviando...";
 
     try{
@@ -226,13 +226,10 @@ form.addEventListener("submit",async function(e){
 
             body:JSON.stringify({
 
-                nome:nome.value.trim(),
-
-                cpf:cpf.value,
-
-                telefone:telefone.value,
-
-                nascimento:nascimento.value
+                nome: nome.value.trim(),
+                cpf: cpf.value,
+                telefone: telefone.value,
+                nascimento: nascimento.value
 
             })
 
@@ -242,35 +239,40 @@ form.addEventListener("submit",async function(e){
 
         if(json.success){
 
-            alert(json.message);
-
             form.reset();
 
-            idadeErro.style.display="none";
-
-            botao.innerHTML="<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+            idadeErro.style.display = "none";
 
             validarFormulario();
 
-        }else{
+            // Agora redireciona a aba já aberta
+            whatsappTab.location.href = WHATSAPP_GROUP;
 
-            alert(json.message);
-
-            botao.disabled=false;
-
-            botao.innerHTML="<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+            return;
 
         }
 
+        // Se deu erro, fecha a aba em branco
+        whatsappTab.close();
+
+        alert(json.message);
+
+        botao.disabled = false;
+
+        botao.innerHTML = "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+
     }catch(erro){
+
+        // Fecha a aba em branco
+        whatsappTab.close();
 
         console.error(erro);
 
-        alert("Não foi possível enviar o cadastro.");
+        alert("Não foi possível concluir o cadastro.");
 
-        botao.disabled=false;
+        botao.disabled = false;
 
-        botao.innerHTML="<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+        botao.innerHTML = "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
 
     }
 
