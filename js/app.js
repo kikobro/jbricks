@@ -245,8 +245,8 @@ form.addEventListener("submit", async function(e){
 
             validarFormulario();
 
-            // Agora redireciona a aba já aberta
-            whatsappTab.location.href = WHATSAPP_GROUP;
+            // Agora redireciona a aba já aberta           
+            window.location.href = WHATSAPP_GROUP
 
             return;
 
