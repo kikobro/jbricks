@@ -80,11 +80,12 @@ telefone.addEventListener("input",()=>{
 // EVENTOS
 //======================================================
 
-nome.addEventListener("input",validarFormulario);
+nome.addEventListener("input", validarFormulario);
 
-nascimento.addEventListener("change",validarFormulario);
+nascimento.addEventListener("change", validarFormulario);
 
-aceite.addEventListener("change",validarFormulario);
+aceite.addEventListener("change", validarFormulario);
+
 //======================================================
 // VALIDA CPF
 //======================================================
@@ -149,7 +150,10 @@ function maiorDeIdade(){
 
     let mes = hoje.getMonth() - nasc.getMonth();
 
-    if(mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
+    if(
+        mes < 0 ||
+        (mes === 0 && hoje.getDate() < nasc.getDate())
+    ){
 
         idade--;
 
@@ -208,10 +212,8 @@ form.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    // Abre uma aba em branco enquanto ainda é um clique do usuário
-    const whatsappTab = window.open("", "_blank");
-
     botao.disabled = true;
+
     botao.innerHTML = "Enviando...";
 
     try{
@@ -227,8 +229,11 @@ form.addEventListener("submit", async function(e){
             body:JSON.stringify({
 
                 nome: nome.value.trim(),
+
                 cpf: cpf.value,
+
                 telefone: telefone.value,
+
                 nascimento: nascimento.value
 
             })
@@ -245,26 +250,33 @@ form.addEventListener("submit", async function(e){
 
             validarFormulario();
 
-            // Agora redireciona a aba já aberta           
-            window.location.href = WHATSAPP_GROUP
+            botao.innerHTML =
+                "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+
+            botao.disabled = true;
+
+            const entrar = confirm(
+                "✅ Cadastro realizado com sucesso!\n\nClique em OK para solicitar sua entrada na comunidade JBricks."
+            );
+
+            if(entrar){
+
+                window.location.href = WHATSAPP_GROUP;
+
+            }
 
             return;
 
         }
 
-        // Se deu erro, fecha a aba em branco
-        whatsappTab.close();
-
         alert(json.message);
 
         botao.disabled = false;
 
-        botao.innerHTML = "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+        botao.innerHTML =
+            "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
 
     }catch(erro){
-
-        // Fecha a aba em branco
-        whatsappTab.close();
 
         console.error(erro);
 
@@ -272,7 +284,8 @@ form.addEventListener("submit", async function(e){
 
         botao.disabled = false;
 
-        botao.innerHTML = "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
+        botao.innerHTML =
+            "<span>Finalizar Cadastro</span><span class='button-arrow'>➜</span>";
 
     }
 
