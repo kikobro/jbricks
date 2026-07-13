@@ -1,0 +1,850 @@
+/* ==========================================================
+   JBRICKS LANDING PAGE
+   STYLE V2
+========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fdfefe 0%,
+            #f4f7fc 100%
+        );
+
+    color:#1f2937;
+
+    overflow-x:hidden;
+
+}
+
+/* ======================================
+            LAYOUT
+====================================== */
+
+.landing{
+
+    width:100%;
+
+    min-height:100vh;
+
+    position:relative;
+
+    padding-bottom:80px;
+
+}
+
+/* ======================================
+          LEGO BRICKS
+====================================== */
+
+.brick{
+
+    position:fixed;
+
+    width:180px;
+
+    z-index:1;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    transition:.30s;
+
+}
+
+.brick:hover{
+
+    transform:scale(1.04);
+
+}
+
+.brick-top-left{
+
+    top:10px;
+
+    left:10px;
+
+}
+
+.brick-top-right{
+
+    top:10px;
+
+    right:10px;
+
+}
+
+.brick-bottom-left{
+
+    bottom:10px;
+
+    left:10px;
+
+}
+
+.brick-bottom-right{
+
+    bottom:10px;
+
+    right:10px;
+
+}
+
+/* ======================================
+             HERO
+====================================== */
+
+.hero{
+
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding-top:35px;
+
+    padding-bottom:20px;
+
+}
+
+/* ======================================
+             LOGO
+====================================== */
+
+.hero-logo{
+
+    margin-bottom:18px;
+
+}
+
+.hero-logo img{
+
+    width:235px;
+
+    height:235px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    padding:10px;
+
+    box-shadow:
+
+        0 20px 55px rgba(0,0,0,.12);
+
+}
+
+/* ======================================
+            TITULO
+====================================== */
+
+.hero h1{
+
+    font-size:60px;
+
+    font-weight:800;
+
+    color:#183a8f;
+
+    letter-spacing:-1px;
+
+    margin-bottom:18px;
+
+}
+
+.hero p{
+
+    max-width:760px;
+
+    font-size:22px;
+
+    line-height:1.8;
+
+    color:#5d6470;
+
+}
+
+.hero-icon{
+
+    display:none;
+
+}
+/* ======================================
+            CARD
+====================================== */
+
+.card{
+
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    max-width:980px;
+
+    margin:10px auto 60px;
+
+    background:#ffffff;
+
+    border-radius:26px;
+
+    padding:55px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.08);
+
+}
+
+/* ======================================
+          CABEÇALHO
+====================================== */
+
+.card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:45px;
+
+}
+
+.icon-circle{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    background:#edf4ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    flex-shrink:0;
+
+}
+
+.card-header h2{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+/* ======================================
+           GRID
+====================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:34px;
+
+}
+
+/* ======================================
+          FORM GROUP
+====================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+    color:#374151;
+
+}
+
+.form-group small{
+
+    margin-top:10px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+/* ======================================
+             INPUT
+====================================== */
+
+.input{
+
+    display:flex;
+
+    align-items:center;
+
+    height:62px;
+
+    padding:0 18px;
+
+    border-radius:14px;
+
+    border:1px solid #dbe3ef;
+
+    background:#ffffff;
+
+    transition:.25s;
+
+}
+
+.input:hover{
+
+    border-color:#7ba3ff;
+
+}
+
+.input:focus-within{
+
+    border-color:#2f67f7;
+
+    box-shadow:
+        0 0 0 4px rgba(47,103,247,.12);
+
+}
+
+.input span{
+
+    width:28px;
+
+    margin-right:12px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    opacity:.70;
+
+}
+
+.input input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:16px;
+
+    color:#1f2937;
+
+}
+
+.input input::placeholder{
+
+    color:#b2b8c3;
+
+}
+/* ======================================
+            ALERTA
+====================================== */
+
+.alert{
+
+    display:none;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:30px;
+
+    padding:18px 22px;
+
+    border-radius:14px;
+
+    background:#fff1f1;
+
+    color:#d62828;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    border:1px solid #ffd2d2;
+
+}
+
+.alert-icon{
+
+    font-size:20px;
+
+}
+
+/* ======================================
+            ACEITE
+====================================== */
+
+.accept{
+
+    margin-top:38px;
+
+}
+
+.accept-label{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+    color:#555;
+
+}
+
+.accept input{
+
+    margin-top:4px;
+
+    width:18px;
+
+    height:18px;
+
+}
+
+/* ======================================
+             LINKS
+====================================== */
+
+.links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    margin-top:26px;
+
+}
+
+.links a{
+
+    color:#2c66f6;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.links a:hover{
+
+    color:#1849c6;
+
+    text-decoration:underline;
+
+}
+
+/* ======================================
+            BOTÃO
+====================================== */
+
+.actions{
+
+    margin-top:42px;
+
+}
+
+.actions button{
+
+    width:100%;
+
+    height:64px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        180deg,
+        #3777ff 0%,
+        #245fe4 100%
+    );
+
+    color:#fff;
+
+    font-size:19px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    box-shadow:
+        0 12px 30px rgba(55,119,255,.28);
+
+}
+
+.actions button:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 35px rgba(55,119,255,.35);
+
+}
+
+.actions button:active:not(:disabled){
+
+    transform:translateY(0);
+
+}
+
+.actions button:disabled{
+
+    background:#b8c2d8;
+
+    box-shadow:none;
+
+    cursor:not-allowed;
+
+}
+
+/* ======================================
+          RESPONSIVO
+====================================== */
+
+@media(max-width:900px){
+
+    .card{
+
+        width:92%;
+
+        padding:40px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .brick{
+
+        width:120px;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero{
+
+        padding-top:25px;
+
+    }
+
+    .hero-logo img{
+
+        width:170px;
+
+        height:170px;
+
+    }
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+    .hero p{
+
+        font-size:17px;
+
+        padding:0 20px;
+
+    }
+
+    .card{
+
+        width:94%;
+
+        padding:28px;
+
+        border-radius:20px;
+
+    }
+
+    .card-header{
+
+        margin-bottom:30px;
+
+    }
+
+    .card-header h2{
+
+        font-size:28px;
+
+    }
+
+    .links{
+
+        flex-direction:column;
+
+        gap:14px;
+
+        align-items:center;
+
+    }
+
+    .brick{
+
+        width:80px;
+
+        opacity:.25;
+
+    }
+
+}
+
+/* ======================================
+           ANIMAÇÕES
+====================================== */
+
+.hero-logo img{
+
+    transition:.30s;
+
+}
+
+.hero-logo img:hover{
+
+    transform:scale(1.03);
+
+}
+
+.card{
+
+    animation:fadeUp .45s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================================
+                    REGRAS
+========================================================== */
+
+.rules{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:26px;
+
+    margin-top:20px;
+
+}
+
+.rule-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+}
+
+.rule-number{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:#edf4ff;
+
+    color:#2f67f7;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+.rule-text{
+
+    flex:1;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:#374151;
+
+}
+
+.rule-text strong{
+
+    color:#1f2937;
+
+}
+
+.rules hr{
+
+    margin:25px 0;
+
+}
+
+/* ==========================================================
+            BOTÃO VOLTAR
+========================================================== */
+
+.button-back{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+    height:64px;
+
+    text-decoration:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        180deg,
+        #3777ff,
+        #245fe4
+    );
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+    box-shadow:
+        0 12px 30px rgba(55,119,255,.28);
+
+}
+
+.button-back:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 35px rgba(55,119,255,.35);
+
+}
+
+.actions{
+
+    margin-top:45px;
+
+    padding-top:35px;
+
+    border-top:1px solid #e5e7eb;
+
+}
